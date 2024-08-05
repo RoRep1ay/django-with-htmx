@@ -1,0 +1,18 @@
+{
+  "name": "django-fasthtml",
+  "version": "1.0.0",
+  "description": "## Setup 1. Clone the repository 2. Create a virtual environment and activate it ```bash python3 -m venv .venv source .venv/bin/activate ``` 3. Install the requirements ```bash pip install -r requirements.txt ``` 4. Make migrations and migrate ```bash python manage.py makemigrations --no-header python manage.py migrate ``` 5. Create a superuser ```bash python manage.py createsuperuser ``` 6. Run the server ```bash python manage.py runserver ```",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "tailwindcss -i ./assets/css/styles.css -o ./apps/static/css/styles.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.40",
+    "tailwindcss": "^3.4.7"
+  }
+}

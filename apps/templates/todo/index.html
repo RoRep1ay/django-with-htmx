@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1 class="text-2xl font-bold">TODO App</h1>
+  <ul id="item-list">
+    {% for it in items %}
+      <li class="flex items-center border-b border-gray-200 py-2" id="item-{{ it.id }}">
+        <input
+          type="checkbox" 
+          class="mr-2"
+          id="myCheckbox-{{ it.id }}"
+          hx-patch="/todos/{{ it.id }}/"
+          hx-swap="outerHTML"
+          hx-target="#item-{{ it.id }}"
+          {% if it.completed %}checked{% endif %}
+        > 
+          <div class="flex justify-between items-center w-full">
+            <span>{{ it }}</span>
+            <button
+              hx-delete="/todos/{{ it.id }}/"
+              class="bg-red-500 text-white px-2 py-1 rounded"
+              hx-swap="outerHTML"
+              hx-target="#item-{{ it.id }}"
+            >
+              Delete
+          </button>
+        </div>
+      </li>
+    {% endfor %}
+    <li class="flex items-center border-b border-gray-200 py-2" id="new-item-form">
+      <form method="POST" id="create-todo-form" class="flex w-full" hx-post="/todos/" hx-swap="beforebegin" hx-target="#new-item-form"
+        >
+        {% csrf_token %}
+        <input
+          id="todo-title-input"
+          class="border border-gray-200 p-1 flex-auto mr-3 rounded"
+          name="title"
+          type="text" 
+          required
+          hx-get="/todos/validate/"
+          hx-trigger="keyup changed delay:300ms"
+          hx-swap="innerHTML"
+          hx-target="#todo-title-input-error"
+        > 
+        <button
+          type="submit"
+          class="bg-blue-500 text-white px-2 py-1 rounded"
+        >Create</button>
+      </form>
+    </li>
+  </ul>
+  <div id="todo-title-input-error" class="text-red-500"></div>
+  <script>
+  document.addEventListener('htmx:configRequest', function(event) {
+    var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    event.detail.headers['X-CSRFToken'] = token;
+  });
+
+  // Clear the input field after a successful request
+  document.addEventListener('htmx:afterRequest', function(event) {
+    if (event.detail.elt.id === 'create-todo-form') {
+      document.getElementById('todo-title-input').value = '';
+    }
+  });
+  </script>
+{% endblock %}
