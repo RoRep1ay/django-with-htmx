@@ -1,8 +1,9 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from .models import TodoItem
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 def home(request):
     todos = TodoItem.objects.all()
     return render(request, 'todo/index.html', {'items': todos})
