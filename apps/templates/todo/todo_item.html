@@ -1,0 +1,23 @@
+<li class="flex items-center border-b border-gray-200 py-2" id="item-{{ it.id }}">
+  <input
+    type="checkbox" 
+    class="mr-2"
+    id="myCheckbox-{{ it.id }}"
+    hx-patch="/todos/{{ it.id }}/"
+    hx-swap="outerHTML"
+    hx-target="#item-{{ it.id }}"
+    {% if it.completed %}checked{% endif %}
+  > 
+  <div class="flex justify-between items-center w-full">
+    <span>{{ it }}</span>
+    <button
+      hx-delete="/todos/{{ it.id }}/"
+      class="bg-red-500 text-white px-2 py-1 rounded"
+      hx-swap="outerHTML"
+      hx-target="#item-{{ it.id }}"
+    >
+      Delete
+    </button>
+  </div>
+</li>
+
