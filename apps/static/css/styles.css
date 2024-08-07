@@ -633,10 +633,6 @@ video {
   display: none;
 }
 
-.h-8 {
-  height: 2rem;
-}
-
 .w-full {
   width: 100%;
 }
@@ -837,6 +833,39 @@ video {
   padding-bottom: 0.75rem;
   --tw-text-opacity: 1;
   color: rgb(185 28 28 / var(--tw-text-opacity));
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease-out;
+}
+
+.submit-button.htmx-request {
+  cursor: not-allowed;
+  --tw-bg-opacity: 1;
+  background-color: rgb(96 165 250 / var(--tw-bg-opacity));
+}
+
+.submit-button.htmx-request::after {
+  content: "";
+  border: 2px solid transparent;
+  border-top-color: white;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .hover\:bg-blue-800:hover {

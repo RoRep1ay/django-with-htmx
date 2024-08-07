@@ -5,3 +5,33 @@
 .errorlist {
   @apply bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-2;
 }
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease-out;
+}
+
+.submit-button.htmx-request {
+  @apply bg-blue-400 cursor-not-allowed;
+}
+
+.submit-button.htmx-request::after {
+  content: "";
+  border: 2px solid transparent;
+  border-top-color: white;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+from {
+  transform: rotate(0deg);
+}
+to {
+  transform: rotate(360deg);
+}
+}

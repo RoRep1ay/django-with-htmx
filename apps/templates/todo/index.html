@@ -7,7 +7,13 @@
       {% include 'todo/todo_item.html' with it=it %}
     {% endfor %}
     <li class="flex items-center border-b border-gray-200 py-2" id="new-item-form">
-      <form method="POST" id="create-todo-form" class="flex w-full" hx-post="/todos/" hx-swap="beforebegin" hx-target="#new-item-form"
+      <form method="POST"
+        id="create-todo-form"
+        class="flex w-full"
+        hx-post="/todos/"
+        hx-swap="beforebegin"
+        hx-target="#new-item-form"
+        hx-indicator="#create-todo-button"
         >
         {% csrf_token %}
         <input
@@ -22,9 +28,12 @@
           hx-target="#todo-title-input-error"
         > 
         <button
+          id="create-todo-button"
           type="submit"
-          class="bg-blue-500 text-white px-2 py-1 rounded"
-        >Create</button>
+          class="bg-blue-500 text-white px-2 py-1 rounded submit-button"
+        >
+          Create
+        </button>
       </form>
     </li>
   </ul>

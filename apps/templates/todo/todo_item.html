@@ -13,8 +13,10 @@
     <button
       hx-delete="/todos/{{ it.id }}/"
       class="bg-red-500 text-white px-2 py-1 rounded"
-      hx-swap="outerHTML"
+      hx-swap="none"
+      hx-trigger="click"
       hx-target="#item-{{ it.id }}"
+      hx-on:click="this.closest('#item-{{ it.id }}').classList.add('fade-out'); setTimeout(() => this.closest('#item-{{ it.id }}').remove(), 500);"
     >
       Delete
     </button>
