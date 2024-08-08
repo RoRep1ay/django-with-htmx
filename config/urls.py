@@ -20,8 +20,13 @@ from django.urls import (
     path,
 )
 
+account_urls = [
+    path('', include('django.contrib.auth.urls')),
+    path('signup/', include('apps.account.urls', namespace='accounts')),
+]
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('apps.todo.urls', namespace='todos')),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include(account_urls)),
 ]
